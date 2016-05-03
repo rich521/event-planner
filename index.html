@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!--     <link rel="icon" href="../../favicon.ico">
+ -->
+    <title>VueJS Demo</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+    <!-- Custom styles for this template -->
+    <link href="css/jumbotron-narrow.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Static navbar -->
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <h3 class="header">Event Planner</h3>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="topBtn invisible" data-toggle="modal" data-target="#myModal"><a href="#">Add Event</a></li>
+                        <li class="highlight"><a href="#">Sign up</a></li>
+                        <li><a href="#">Login</a></li>
+                    </ul>
+                </div>
+                <!--/.nav-collapse -->
+            </div>
+        </nav>
+        <div id="app" class="mid-section">
+            <div class="change add-box" data-toggle="modal" data-target="#myModal">
+                <div class="ham-burg">+</div>
+                <h4 class="eventBtn">Add an event</h4>
+            </div>
+            <div class="modal fade" transition=modal v-show=show id="myModal">
+                <div class=modal-container>
+                    <div class=modal-body>
+                        <div class='small' data-dismiss="modal">close</div>
+                        <div class=card>
+                            <h1 class=title>Event Planner</h1>
+                            <form v-on:submit.prevent>
+                                <div class=input-container>
+                                    <input id=event-name required autofocus v-model="event.name" title="Required! - 'Name of event'" autocomplete="off" class="toolTip" data-trigger="manual" onfocusout="eventValidation('#event-name')">
+                                    <label for=event-name>Event name</label>
+                                    <div class=bar></div>
+                                    <p class="tag-tip">e.g. 'Web development Workshop'</p>
+                                </div>
+                                <div class="input-group input-daterange" id="date">
+                                    <input id="date1" size="16" type="text" value="{{ datetime }}  @  11:30 AM" readonly class="form-control form_datetime" v-model="event.date1" required>
+                                    <input id="date2" size="16" type="text" value="{{ datetime }}  @  4:30 PM" readonly class="form-control form_datetime" v-model="event.date2" required>
+                                </div>
+                                <select v-model="event.eventType" title="Required! - 'Type of event'" autocomplete="off" required id="select-input" class="toolTip" data-trigger="manual" onfocusout="eventValidation('#select-input')">
+                                    <option selected value="">Select event-type</option>
+                                    <option value="Meet-up">Meet-up</option>
+                                    <option value="Birthday">Birthday</option>
+                                    <option value="Conference">Conference</option>
+                                    <option value="Fair">Fair</option>
+                                    <option value="Other">Other</option>
+                                    <option value="Party">Party</option>
+                                    <option value="Seminar">Seminar</option>
+                                    <option value="Social">Social</option>
+                                    <option value="Wedding">Wedding</option>
+                                </select>
+                                <div class=input-container>
+                                    <input id=event-host required v-model="event.host" title="Required! - 'Host name'" autocomplete="off" class="toolTip" data-trigger="manual" onfocusout="eventValidation('#event-host')">
+                                    <label for=event-host>Host name</label>
+                                    <div class=bar></div>
+                                    <p class="tag-tip">individual’s name or an organization</p>
+                                </div>
+                                <div class=input-container>
+                                    <input class="type-zone toolTip" v-on:keyup="keyUp" id="guest" autocomplete="off" title="Required! - 'Guest List'" class="toolTip" data-trigger="manual" onfocusout="eventValidation('#guest')">
+                                    <label id="label-guest" for="guest">Guest list</label>
+                                    <div class=bar></div>
+                                    <p class="tag-tip">use a 'comma ,' or 'enter' to add a guest name</p>
+                                </div>
+                                <div class=input-container>
+                                    <input id="guestInput" type="hidden" required v-model="event.guest">
+                                    <div id="tagList"></div>
+                                </div>
+                                <div class=input-container>
+                                    <input id=location required v-model="event.location" title="Required! - 'Address of event'" autocomplete="off" class="toolTip" data-trigger="manual" onfocusout="eventValidation('#location')">
+                                    <label for=location>Location</label>
+                                    <div class=bar></div>
+                                    <p class="tag-tip">e.g. 'Room 203, Block B, Oxford University'</p>
+                                </div>
+                                <div class=input-container>
+                                    <textarea class="form-control" placeholder="(Optional) This event is about..." v-model="event.description"></textarea>
+                                    <div class=bar></div>
+                                </div>
+                                <div class=button-container>
+                                    <button v-on:click="addEvent"><span>Add</span></button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="event-list">
+                <div class="list-group-item" v-for="event in eventLists">
+                    <button class="btn btn-xs btn-danger" v-on:click="deleteEvent($index)">X</button>
+                    <table>
+                        <tr>
+                            <th><i class="glyphicon glyphicon-bullhorn"></i></th>
+                            <th class="th-name">{{ event.name }}</th>
+                        </tr>
+                        <tr>
+                            <td><i class="glyphicon glyphicon-time"></i></td>
+                            <td>{{ event.date1 }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>{{ event.date2 }}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="glyphicon glyphicon-tag"></i></td>
+                            <td>{{ event.eventType }} event</td>
+                        </tr>
+                        <tr>
+                            <td><i class="glyphicon glyphicon-user"></i></td>
+                            <td class="host-by">Hosted by
+                                <p class="event-host">{{ event.host }}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><i class="glyphicon glyphicon-user user-one"><i class="glyphicon glyphicon-user user-two"></i></i>
+                            </td>
+                            <td>{{ event.guest }}</td>
+                        </tr>
+                        <tr>
+                            <td><i class="glyphicon glyphicon-map-marker"></i></td>
+                            <td class="event-loc">{{ event.location }}</td>
+                        </tr>
+                        <tr class="remove-tr">
+                            <td></td>
+                            <td class="event-des">{{ event.description }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer class="footer">
+            <p><a class="vue" href="https://vuejs.org/" target="_blank">Vue.js</a> framework<span class="developer">Richard Strutt, 2016</span></p>
+        </footer>
+    </div>
+    <!-- v0.11 compiled & Minified Vue.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.21/vue.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="lib/bootstrap-datetimepicker.js"></script>
+    <script src="lib/tagging.js"></script>
+    <script async src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script async src="js/app.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css">
+</body>
+
+</html>

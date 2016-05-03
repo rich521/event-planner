@@ -1,0 +1,180 @@
+/* Space out content a bit */
+
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    font-family: "Quicksand", Arial;
+}
+
+.container {
+    width: 568px;
+}
+
+.nav {
+    margin-right: 5px;
+}
+
+.navbar-default .navbar-nav>li.highlight>a {
+    color: #fff;
+    background-color: #59CF84;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    line-height: 20px;
+}
+
+.navbar-default .navbar-nav>li.highlight>a:focus,
+.navbar-default .navbar-nav>li.highlight>a:hover {
+    background-color: #4CA86E;
+}
+
+.navbar-default {
+    background-color: white;
+    border-color: #e7e7e7;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: #59CF84;
+}
+
+.header {
+    margin-left: -15px;
+    margin-top: 0px;
+    color: #777;
+    float: left;
+    height: 50px;
+    padding: 15px 0px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.footer {
+    padding-top: 19px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+.developer {
+    float: right;
+}
+
+.vue,
+.vue:hover,
+.vue:focus {
+    text-decoration: none;
+    color: #59CF84;
+}
+
+
+/* Customize container */
+
+.eventBtn {
+    font-size: 20px;
+    font-weight: lighter;
+    color: #777;
+    margin-top: 95px;
+}
+
+.invisible {
+    display: none;
+}
+
+.showBtn {
+    display: inline;
+}
+
+.ham-burg {
+    position: relative;
+    float: right;
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    cursor: pointer;
+    font-size: 26px;
+    line-height: 5rem;
+    border-radius: 100%;
+    color: white;
+    background-color: #59CF84;
+    -webkit-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 1px 1px 5px 1px rgba(0, 0, 0, 0.3)
+}
+
+.ham-burg:hover:active,
+.ham-burg:hover:hover,
+.ham-burg:hover:focus {
+    color: #59CF84;
+    background-color: white;
+}
+
+.add-box:hover,
+.add-box:focus {
+    background-color: #F7F7F7;
+}
+
+.mid-section>h4 {
+    font-weight: normal;
+    color: #777;
+}
+
+
+/* Main marketing message and sign up button */
+
+.mid-section {
+    text-align: center;
+}
+
+.add-box {
+    width: 250px;
+    margin: 20px auto;
+    height: 250px;
+    padding: 20px;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    text-align: center;
+}
+
+
+/* Responsive: Portrait tablets and up */
+
+@media (max-width: 768px) {
+    .navbar-default .navbar-toggle {
+        background-color: #59CF84;
+        border-color: #59CF84;
+    }
+    .navbar-default .navbar-toggle:hover,
+    .navbar-default .navbar-toggle:focus {
+        color: white;
+        background-color: #eee;
+        border-color: lightgrey;
+    }
+    .navbar-default .navbar-toggle .icon-bar {
+        background-color: white;
+    }
+    .header {
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 568px) {
+    body {
+        overflow-y: scroll;
+    }
+    .container {
+        width: 100%;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    /* Remove the bottom border on the jumbotron for visual effect */
+    .jumbotron {
+        border-bottom: 0px;
+    }
+    .nav .navbar-nav {
+        float: right;
+    }
+    .add-box {
+        width: 250px;
+    }
+}
