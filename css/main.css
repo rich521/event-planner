@@ -1,6 +1,4 @@
-/*// Main Colors*/
-/*// Pen Settings*/
-/*Mixins*/
+/*// Set Colors*/
 .modal-mask {
   position: absolute;
   z-index: 9998;
@@ -51,8 +49,7 @@
       height: 50px;
       border: 0;
       color: #212121;
-      font-size: 16px;
-      font-weight: 400; }
+      font-size: 16px; }
       .modal-container .input-container input:focus ~ label,
       .modal-container .input-container textarea:focus ~ label {
         color: #9d9d9d;
@@ -108,7 +105,7 @@
         left: 50%; }
       .modal-container .input-container .bar:after {
         right: 50%; }
-    .modal-container .input-container p {
+    .modal-container .input-container .tag-tip {
       visibility: hidden;
       position: absolute;
       padding-top: 3px;
@@ -118,8 +115,25 @@
     .modal-container .input-container .label-guest {
       -webkit-transform: translate(-12%, -40%) scale(0.75);
               transform: translate(-12%, -40%) scale(0.75); }
+    .modal-container .input-container .help-block {
+      font-size: 11px;
+      position: absolute;
+      color: #E35F5F; }
+    .modal-container .input-container .error {
+      font-size: 11px;
+      position: absolute;
+      color: #E35F5F; }
+    .modal-container .input-container .form-control-feedback {
+      background-color: white;
+      margin-top: 9px;
+      width: 25px; }
+    .modal-container .input-container .glyphicon-remove {
+      color: #E35F5F; }
+    .modal-container .input-container .glyphicon-ok {
+      color: #59CF84; }
   .modal-container .button-container {
-    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 15px;
     text-align: center; }
     .modal-container .button-container button {
       outline: 0;
@@ -131,7 +145,6 @@
       border: 2px solid #e3e3e3;
       padding: 15px 0;
       font-size: 16px;
-      font-weight: 600;
       line-height: 1;
       text-transform: uppercase;
       overflow: hidden;
@@ -208,12 +221,11 @@
 .form-control[readonly],
 fieldset[disabled] .form-control {
   background-color: #fff;
-  opacity: 1;
-  border-top: 0;
-  border-left: 0;
-  border-right: 0;
-  border-bottom: 1px #757575 solid;
-  border-radius: 0; }
+  opacity: 1; }
+
+.form-control:last-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; }
 
 .form-control:focus {
   border-bottom: 2px #59CF84 solid;
@@ -222,6 +234,9 @@ fieldset[disabled] .form-control {
 
 .input-group {
   width: 270px; }
+  .input-group .form-control {
+    margin-bottom: 7px;
+    border-radius: 5px; }
 
 .small {
   position: relative;
@@ -264,6 +279,7 @@ input:-webkit-autofill {
 .event-list {
   margin-bottom: 20px; }
   .event-list .list-group-item {
+    text-align: center;
     margin: 15px 0px; }
     .event-list .list-group-item .btn-danger {
       border: none;
@@ -311,3 +327,25 @@ input:-webkit-autofill {
 /* Tooltip on bottom */
 .toolTip + .tooltip.bottom > .tooltip-arrow {
   border-bottom: 5px solid #E35F5F; }
+
+.time-label {
+  margin-bottom: 2px;
+  padding-left: 5px;
+  color: #59CF84; }
+
+.login {
+  text-align: center; }
+  .login .login-a {
+    cursor: pointer;
+    color: lightgrey;
+    text-decoration: none; }
+  .login .login-a:hover,
+  .login .login-a:focus {
+    font-weight: bold;
+    color: #59CF84; }
+
+.help-block-2 {
+  margin-top: 7px;
+  font-size: 11px;
+  position: absolute;
+  color: #E35F5F; }

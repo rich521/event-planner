@@ -1,7 +1,10 @@
-####Instructions:
+#####Event planner
+
+Login, Sign in, Add Event
+
+#####Instructions:
 
 1. Open index.html to run web application
-2. Play around with adding an event & signing in
 
 #### Gulp instructions 
 
@@ -10,7 +13,8 @@ To run on gulp and browser sync
 1. Open terminal
 2. cd "/to your project folder"
 3. run "-npm install" 
-4. run "gulp"
+4. npm install --global gulp-cli (if you have a previous version of gulp installed)
+5. run "gulp"
 
 #####References
 For more information about these files, click on the respective links below

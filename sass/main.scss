@@ -1,40 +1,10 @@
-/*// Main Colors*/
+/*// Set Colors*/
 
-$accent: null;
 $white: #ffffff;
-$black: #000000;
-$dark-gray: lighten($black, 20%);
-$gray: lighten($black, 40%);
-$light-gray: lighten($black, 60%);
-$lighter-gray: lighten($black, 80%);
-
-/*// Pen Settings*/
-
 $primary: #363636;
-$accent: #59CF84;
-$max-width: 460px;
-
-/*Mixins*/
-
-$level: 1;
-@mixin materialShadow($level) {
-    @if $level==1 {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-    }
-    @else if $level==2 {
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
-    }
-    @else if $level==3 {
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    }
-    @else if $level==4 {
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-    }
-    @else if $level==5 {
-        box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-    }
-}
-
+$greenCustom: #59CF84;
+$redCustom: #E35F5F;
+$dGreyCustom: #757575;
 .modal-mask {
     position: absolute;
     z-index: 9998;
@@ -66,10 +36,10 @@ $level: 1;
         text-align: left;
         position: relative;
         z-index: 1;
-        border-left: 5px solid $accent;
+        border-left: 5px solid $greenCustom;
         margin: 0 -15px 15px;
         padding: 10px 0 10px 15px;
-        color: $accent;
+        color: $greenCustom;
         font-size: 26px;
         font-weight: 300;
     }
@@ -88,7 +58,6 @@ $level: 1;
             border: 0;
             color: #212121;
             font-size: 16px;
-            font-weight: 400;
             &:focus {
                 ~ label {
                     color: #9d9d9d;
@@ -128,7 +97,7 @@ $level: 1;
             position: absolute;
             top: 0;
             left: 0;
-            color: #757575;
+            color: $dGreyCustom;
             font-size: 16px;
             font-weight: 300;
             line-height: 60px;
@@ -139,7 +108,7 @@ $level: 1;
             position: absolute;
             left: 0;
             bottom: 0;
-            background: #757575;
+            background: $dGreyCustom;
             width: 100%;
             height: 1px;
             z-index: 4;
@@ -147,7 +116,7 @@ $level: 1;
             &:after {
                 content: '';
                 position: absolute;
-                background: $accent;
+                background: $greenCustom;
                 width: 0;
                 height: 2px;
                 transition: 0.2s ease;
@@ -159,7 +128,7 @@ $level: 1;
                 right: 50%;
             }
         }
-        p {
+        .tag-tip {
             visibility: hidden;
             position: absolute;
             padding-top: 3px;
@@ -170,10 +139,32 @@ $level: 1;
         .label-guest {
             transform: translate(-12%, -40%) scale(0.75);
         }
+        .help-block {
+            font-size: 11px;
+            position: absolute;
+            color: $redCustom;
+        }
+        .error {
+            font-size: 11px;
+            position: absolute;
+            color: $redCustom;
+        }
+        .form-control-feedback {
+            background-color: white;
+            margin-top: 9px;
+            width: 25px;
+        }
+        .glyphicon-remove {
+            color: $redCustom;
+        }
+        .glyphicon-ok {
+            color: $greenCustom;
+        }
     }
     /* Button */
     .button-container {
-        margin: 0 auto;
+        margin-top: 30px;
+        margin-bottom: 15px;
         text-align: center;
         button {
             outline: 0;
@@ -185,7 +176,6 @@ $level: 1;
             border: 2px solid #e3e3e3;
             padding: 15px 0;
             font-size: 16px;
-            font-weight: 600;
             line-height: 1;
             text-transform: uppercase;
             overflow: hidden;
@@ -202,7 +192,7 @@ $level: 1;
                 top: 50%;
                 left: 50%;
                 display: block;
-                background: $accent;
+                background: $greenCustom;
                 width: 30px;
                 height: 30px;
                 border-radius: 100%;
@@ -213,9 +203,9 @@ $level: 1;
             &:hover,
             &:active,
             &:focus {
-                border-color: $accent;
+                border-color: $greenCustom;
                 span {
-                    color: $accent;
+                    color: $greenCustom;
                 }
             }
             &:active,
@@ -242,9 +232,9 @@ $level: 1;
         border-right: 0;
         -webkit-border-radius: 0;
         border-radius: 0;
-        color: $accent;
+        color: $greenCustom;
         font-weight: bold;
-        border-color: $accent;
+        border-color: $greenCustom;
         background-color: white;
         outline: none;
     }
@@ -261,7 +251,7 @@ $level: 1;
     border-radius: 100%;
     color: white;
     border-width: 0px;
-    background-color: $accent;
+    background-color: $greenCustom;
     -webkit-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
     box-shadow: 1px 1px 10px 1px rgba(0, 0, 0, 0.3);
@@ -284,16 +274,15 @@ $level: 1;
 fieldset[disabled] .form-control {
     background-color: #fff;
     opacity: 1;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-bottom: 1px #757575 solid;
-    -webkit-border-radius: 0;
-    border-radius: 0;
+}
+
+.form-control:last-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .form-control:focus {
-    border-bottom: 2px $accent solid;
+    border-bottom: 2px $greenCustom solid;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -301,6 +290,10 @@ fieldset[disabled] .form-control {
 
 .input-group {
     width: 270px;
+    .form-control {
+        margin-bottom: 7px;
+        border-radius: 5px;
+    }
 }
 
 .small {
@@ -310,7 +303,7 @@ fieldset[disabled] .form-control {
     height: 5rem;
     text-align: center;
     cursor: pointer;
-    color: $accent;
+    color: $greenCustom;
     font-size: 16px;
     line-height: 5rem;
     z-index: 10;
@@ -322,9 +315,9 @@ fieldset[disabled] .form-control {
 .tag {
     background: white;
     border: 1px solid;
-    border-color: $accent;
+    border-color: $greenCustom;
     border-radius: 2px;
-    color: $accent;
+    color: $greenCustom;
     cursor: default;
     display: inline-block;
     position: relative;
@@ -334,7 +327,7 @@ fieldset[disabled] .form-control {
 }
 
 .tag-i {
-    color: $accent;
+    color: $greenCustom;
 }
 
 .tag:hover,
@@ -351,6 +344,7 @@ input:-webkit-autofill {
 .event-list {
     margin-bottom: 20px;
     .list-group-item {
+        text-align: center;
         margin: 15px 0px;
         .btn-danger {
             border: none;
@@ -359,7 +353,7 @@ input:-webkit-autofill {
             right: 15px;
             position: absolute;
             &:hover {
-                background-color: $accent;
+                background-color: $greenCustom;
             }
         }
         table {
@@ -379,7 +373,7 @@ input:-webkit-autofill {
                 padding: 3px 10px;
             }
             i {
-                color: $accent;
+                color: $greenCustom;
             }
             .host-by {
                 font-size: 12px;
@@ -387,7 +381,7 @@ input:-webkit-autofill {
             }
             .event-host {
                 font-size: 16px;
-                color: $accent;
+                color: $greenCustom;
             }
             .user-one {
                 color: #51B576;
@@ -404,14 +398,41 @@ input:-webkit-autofill {
 
 .toolTip + .tooltip > .tooltip-inner {
     z-index: 30;
-    background-color: #E35F5F;
+    background-color: $redCustom;
     color: #FFFFFF;
-    border: 1px solid #E35F5F;
+    border: 1px solid $redCustom;
 }
 
 
 /* Tooltip on bottom */
 
 .toolTip + .tooltip.bottom > .tooltip-arrow {
-    border-bottom: 5px solid #E35F5F;
+    border-bottom: 5px solid $redCustom;
+}
+
+.time-label {
+    margin-bottom: 2px;
+    padding-left: 5px;
+    color: $greenCustom;
+}
+
+.login {
+    text-align: center;
+    .login-a {
+        cursor: pointer;
+        color: lightgrey;
+        text-decoration: none;
+    }
+    .login-a:hover,
+    .login-a:focus {
+        font-weight: bold;
+        color: $greenCustom;
+    }
+}
+
+.help-block-2 {
+    margin-top: 7px;
+    font-size: 11px;
+    position: absolute;
+    color: $redCustom;
 }

@@ -1,4 +1,7 @@
 module.exports = {
+    "parserOptions": {
+        "ecmaVersion": 6
+    },
     "env": {
         "browser": true
     },
@@ -77,7 +80,7 @@ module.exports = {
         "no-empty-function": "error",
         "no-eq-null": "error",
         "no-eval": "error",
-        "no-extend-native": "error",
+        "no-extend-native": "off",
         "no-extra-bind": "error",
         "no-extra-label": "error",
         "no-extra-parens": "error",
@@ -138,7 +141,7 @@ module.exports = {
         "no-useless-call": "error",
         "no-useless-concat": "error",
         "no-useless-constructor": "error",
-        "no-useless-escape": "error",
+        "no-useless-escape": "off",
         "no-var": "off",
         "no-void": "error",
         "no-warning-comments": "error",
@@ -158,7 +161,10 @@ module.exports = {
         "prefer-spread": "error",
         "prefer-template": "off",
         "quote-props": "error",
-        "quotes": "error",
+        "quotes": ["error", "double", {
+            avoidEscape: true,
+            allowTemplateLiterals: true
+        }],
         "radix": "error",
         "require-jsdoc": "error",
         "require-yield": "error",
@@ -173,8 +179,8 @@ module.exports = {
         "space-unary-ops": "error",
         "spaced-comment": "error",
         "strict": [
-            "off",
-            "never"
+            "error",
+            "global"
         ],
         "template-curly-spacing": "error",
         "valid-jsdoc": "error",
