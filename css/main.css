@@ -70,13 +70,15 @@
     .modal-container .input-container input:-webkit-autofill {
       color: #fff !important; }
     .modal-container .input-container textarea {
+      margin-top: 40px;
       padding: 5px;
       font-size: 13.5px;
       font-style: italic;
       box-shadow: none;
       resize: vertical;
-      max-height: 100px; }
+      max-height: 35px; }
     .modal-container .input-container label {
+      pointer-events: none;
       position: absolute;
       top: 0;
       left: 0;
@@ -86,6 +88,9 @@
       line-height: 60px;
       z-index: 3;
       transition: 0.2s ease; }
+    .modal-container .input-container .textLabel {
+      top: -15px;
+      line-height: 0px; }
     .modal-container .input-container .bar {
       position: absolute;
       left: 0;
@@ -131,6 +136,8 @@
       color: #E35F5F; }
     .modal-container .input-container .glyphicon-ok {
       color: #59CF84; }
+    .modal-container .input-container .logLabel {
+      margin-top: -30px; }
   .modal-container .button-container {
     margin-top: 30px;
     margin-bottom: 15px;

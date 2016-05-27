@@ -84,6 +84,7 @@ $dGreyCustom: #757575;
             color: #fff !important;
         }
         textarea {
+            margin-top: 40px;
             padding: 5px;
             font-size: 13.5px;
             font-style: italic;
@@ -91,9 +92,10 @@ $dGreyCustom: #757575;
             -moz-box-shadow: none;
             box-shadow: none;
             resize: vertical;
-            max-height: 100px;
+            max-height: 35px;
         }
         label {
+            pointer-events: none;
             position: absolute;
             top: 0;
             left: 0;
@@ -103,6 +105,10 @@ $dGreyCustom: #757575;
             line-height: 60px;
             z-index: 3;
             transition: 0.2s ease;
+        }
+        .textLabel {
+            top: -15px;
+            line-height: 0px;
         }
         .bar {
             position: absolute;
@@ -159,6 +165,9 @@ $dGreyCustom: #757575;
         }
         .glyphicon-ok {
             color: $greenCustom;
+        }
+        .logLabel {
+            margin-top: -30px;
         }
     }
     /* Button */

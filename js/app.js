@@ -124,7 +124,8 @@ var templateEvent = `
                             <p class="tag-tip">e.g. 'Room 203, Block B, Oxford University'</p>
                         </div>
                         <div class=input-container>
-                            <textarea class="form-control" placeholder="(Optional) This event is about..." v-model="event.description"></textarea>
+                            <textarea class="form-control" id=textarea v-model="event.description" name="description" rows="1"></textarea>
+                            <label class="textLabel" for=description>Description</label>
                             <div class=bar></div>
                         </div>
                         <div class=button-container>
@@ -149,11 +150,13 @@ var templateLogin = `
                         <h1 class=title>Log In</h1>
                         <form v-on:submit.prevent class="formReg" id="logForm">
                             <div class=input-container>
-                                <input class="emailLog clearInput" required name="email" type="email" placeholder="Email" autofocus v-model="userLogin.email">
+                                <input class="emailLog clearInput emailValid" required name="email" type="email" autofocus v-model="userLogin.email">
+                                <label for=email>Email</label>
                                 <div class=bar></div>
                             </div>
                             <div class=input-container>
-                                <input id="passwordLog" class="clearInput" required type="password" placeholder="Password" v-model="userLogin.password">
+                                <input id="passwordLog" class="clearInput" required name="password" type="password" v-model="userLogin.password">
+                                <label for=password>Password</label>
                                 <div class=bar id="validForm"></div>
                             </div>
                             <div class=button-container>
@@ -176,28 +179,33 @@ var templateLogin = `
                         <h1 class=title>Register</h1>
                         <form v-on:submit.prevent class="formReg" id="regForm">
                             <div class=input-container>
-                                <input class="clearInput registerReq" id="name" name="fname" required v-model="register.fname" placeholder="First name" autofocus>
+                                <input class="clearInput registerReq" id="name" name="fname" required v-model="register.fname" autofocus>
                                 <span class="glyphicon form-control-feedback" id="name1"></span>
+                                <label for=fname>First name</label>
                                 <div class=bar></div>
                             </div>
                             <div class=input-container>
-                                <input class="clearInput registerReq" id="lname" name="lname" required v-model="register.lname" placeholder="Last name">
+                                <input class="clearInput registerReq" id="lname" name="lname" required v-model="register.lname">
                                 <span class="glyphicon form-control-feedback" id="lname1"></span>
+                                <label for=lname>Last name</label>
                                 <div class=bar></div>
                             </div>
                             <div class=input-container>
-                                <input class="clearInput registerReq" id=email required v-model="register.email" type="email" name="email" placeholder="Email">
+                                <input class="clearInput registerReq emailValid" id=email required v-model="register.email" type="email" name="email">
                                 <span class="glyphicon form-control-feedback" id="email1"></span>
+                                <label for=email>Email</label>
                                 <div class=bar>
                                 </div>
                             </div>
                             <div class=input-container>
-                                <input class="clearInput registerReq" id="password" name="password" required v-model="register.password" type="password" placeholder="Password">
+                                <input class="clearInput registerReq" id="password" name="password" required v-model="register.password" type="password">
                                     <span class="glyphicon form-control-feedback" id="password1"></span>
+                                    <label for=password>Password</label>
                                 <div class=bar></div>
                             </div>
                             <div class=input-container>
-                                <input class="clearInput" id="register-organization" v-model="register.organization" autocomplete="off" placeholder="Company, organization etc..">
+                                <input class="clearInput" name="optional" id="register-organization" v-model="register.organization" autocomplete="off" placeholder="e.g. Google company">
+                                <label for=optional>Organization</label>
                                 <div class=bar id="validForm2"></div>
                             </div>
                             <div class=button-container>
@@ -544,6 +552,7 @@ var initVue = new Vue({
     "ready": function () {
         // initalize tags
         $("#tagList").tagging();
+        // $("#textarea").autogrow();
 
         // initalize calendar
         $(".form_datetime").datetimepicker({
@@ -635,6 +644,8 @@ var validateRules = {
     "errorElement": "span",
     "errorClass": "help-block",
     "errorPlacement": function (error, element) {
+        // remove any help blocks first
+        $(".help-block").remove();
         var valueInputPass;
 
         if (element.length) {
@@ -658,6 +669,17 @@ var validateRules = {
 // Focusout event listener
 $("input").focusout(function () {
     eventValidation(this);
+});
+
+// Force label up, from valid css bug
+$(".emailValid").each(function () {
+    $(this).focusout(function () {
+        if ($(this).val() !== "") {
+            $(this).siblings("label").css("transform", "translate(-12%, -40%) scale(0.75)");
+        } else if ($(this).val() === "") {
+            $(this).siblings("label").css("transform", "");
+        }
+    });
 });
 
 // Submit handlers & validators for regsiter and login form
