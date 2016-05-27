@@ -149,7 +149,7 @@ var templateLogin = `
                         <h1 class=title>Log In</h1>
                         <form v-on:submit.prevent class="formReg" id="logForm">
                             <div class=input-container>
-                                <input class="emailLog clearInput" required type="email" placeholder="Email" autofocus v-model="userLogin.email">
+                                <input class="emailLog clearInput" required name="email" type="email" placeholder="Email" autofocus v-model="userLogin.email">
                                 <div class=bar></div>
                             </div>
                             <div class=input-container>
