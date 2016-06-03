@@ -5,19 +5,19 @@ Login, Sign in, Add Event
 #####Instructions:
 
 1. Download the project folder
-2. In temrinal, cd "/to your project folder"
-3. run "-npm install" (install the node modules)
-4. Open index.html to run web application (Needs internet to run)
-5. Sign in to create an event. (Local storage, no server used)
+2. Open 'dist folder'
+3. Open index.html to run web application (Needs internet to run)
+4. Sign in to create an event. (Local storage, no server used)
 
 #### Gulp instructions 
 
-To run on gulp and browser sync
+To run on gulp, browser sync & building tools
 
 1. Open terminal
-2. cd "/to your project folder"
+2. cd "/to your project folder/src"
 3. npm install --global gulp-cli (make sure you have npm installed)
-4. run "gulp"
+4. install devDependencies node modules (package.json)
+5. run "gulp"
 
 #####References
 For more information about these files, click on the respective links below
