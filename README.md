@@ -14,9 +14,9 @@ Login, Sign in, Add Event
 To run on gulp, browser sync & building tools
 
 1. Open terminal
-2. cd "/to your project folder/src"
+2. cd "/to your project folder"
 3. npm install --global gulp-cli (make sure you have npm installed)
-4. install devDependencies node modules (package.json)
+4. install devDependencies node modules from 'package.json'
 5. run "gulp"
 
 #####References
