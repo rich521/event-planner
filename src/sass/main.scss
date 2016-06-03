@@ -413,11 +413,10 @@ input:-webkit-autofill {
     border: 1px solid $redCustom;
 }
 
-
-/* Tooltip on bottom */
-
-.toolTip + .tooltip.bottom > .tooltip-arrow {
-    border-bottom: 5px solid $redCustom;
+.tooltip.top .tooltip-arrow,
+.tooltip.bottom .tooltip-arrow {
+    border-top-color: $redCustom;
+    border-bottom-color: $redCustom;
 }
 
 .time-label {
@@ -464,9 +463,7 @@ input:-webkit-autofill {
     border-radius: 5px;
 }
 
-@media (min-width: 768px) {
-    .custom-li {
-        padding-top: 15px;
-        padding-bottom: 15px;
-    }
+.custom-li {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
 }

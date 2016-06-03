@@ -327,9 +327,10 @@ input:-webkit-autofill {
   color: #FFFFFF;
   border: 1px solid #E35F5F; }
 
-/* Tooltip on bottom */
-.toolTip + .tooltip.bottom > .tooltip-arrow {
-  border-bottom: 5px solid #E35F5F; }
+.tooltip.top .tooltip-arrow,
+.tooltip.bottom .tooltip-arrow {
+  border-top-color: #E35F5F;
+  border-bottom-color: #E35F5F; }
 
 .time-label {
   margin-bottom: 2px;
@@ -368,7 +369,6 @@ input:-webkit-autofill {
 .input-group-btn:not(:first-child):not(:last-child) {
   border-radius: 5px; }
 
-@media (min-width: 768px) {
-  .custom-li {
-    padding-top: 15px;
-    padding-bottom: 15px; } }
+.custom-li {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important; }

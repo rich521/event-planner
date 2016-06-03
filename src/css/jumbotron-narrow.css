@@ -24,6 +24,10 @@ body {
     line-height: 20px;
 }
 
+.navbar-nav>li:hover {
+    color: #333;
+}
+
 .navbar-default .navbar-nav>li.highlight>a:focus,
 .navbar-default .navbar-nav>li.highlight>a:hover {
     background-color: #4CA86E;
@@ -117,14 +121,6 @@ body {
     font-weight: normal;
     color: #777;
 }
-
-
-/* Main marketing message and sign up button */
-
-
-/*.mid-section {
-    text-align: center;
-}*/
 
 .add-box {
     width: 250px;
