@@ -78,20 +78,22 @@ var templateEvent = `
                     <h1 class=title>Event Planner</h1>
                     <form v-on:submit.prevent>
                         <div class=input-container>
-                            <input id=event-name required v-model="event.name" autofocus title="Required! - 'Name the event'" autocomplete="off" class="toolTip event-required" data-trigger="manual">
+                            <input id=event-name required v-model="event.name" autofocus title="Required! - 'Name the event'" autocomplete="off" class="toolTip event-required" data-trigger="manual" data-placement="bottom">
                             <label for=event-name>Event name</label>
                             <div class=bar>
                             </div>
                             <p class="tag-tip">e.g. 'Web development Workshop'</p>
                         </div>
-                        <div class="input-group input-daterange" id="date">
-                            <p class="time-label" for="date1">Start time</p>
-                            <input id="date1" size="16" type="text" placeholder="` + datetime + `  @  11:30 AM" value="" readonly class="form-control form_datetime event-required toolTip" v-model="event.date1" required title="Required! - 'Start date & time'" data-trigger="manual">
-                            <p class="time-label" for="date2">End time</p>
-                            <input id="date2" size="16" type="text" placeholder="` + datetime + `  @  4:30 PM" value="" readonly class="form-control form_datetime event-required toolTip" v-model="event.date2" required title="Required! - 'End date & time'" data-trigger="manual">
+                        <div class="input-group input-daterange">
+                            <label class="time-label" for="date1">Start time</label>
+                            <input id="date1" size="16" type="text" placeholder="Select start date" value="" readonly class="form-control form_datetime event-required toolTip" v-model="event.date1" required title="Required! - 'Start date & time'" data-trigger="manual" data-placement="top">
                         </div>
-                        <p class="time-label" for="select-input">Type of Event</p>
-                        <select v-model="event.eventType" title="Required! - 'Type of event'" autocomplete="off" required id="select-input" class="toolTip event-required" data-trigger="manual" onfocusout="eventValidation('#select-input')">
+                        <div class="input-group input-daterange">
+                            <label class="time-label" for="date2">End time</label>
+                            <input id="date2" size="16" type="text" placeholder="Select end date" value="" readonly class="form-control form_datetime event-required toolTip" v-model="event.date2" required title="Required! - 'End date & time'" data-trigger="manual" data-placement="top">
+                        </div>
+                        <label class="time-label" for="select-input">Type of Event</label>
+                        <select v-model="event.eventType" title="Required! - 'Type of event'" autocomplete="off" required id="select-input" class="toolTip event-required" data-trigger="manual" onfocusout="eventValidation('#select-input')" data-placement="bottom">
                             <option selected value="">Select an event</option>
                             <option value="Meet-up">Meet-up</option>
                             <option value="Birthday">Birthday</option>
@@ -104,23 +106,23 @@ var templateEvent = `
                             <option value="Wedding">Wedding</option>
                         </select>
                         <div class=input-container>
-                            <input id=event-host required v-model="event.host" title="Required! - 'Add a host name'" autocomplete="off" class="toolTip event-required" data-trigger="manual">
+                            <input id=event-host required v-model="event.host" title="Required! - 'Add a host name'" autocomplete="off" class="toolTip event-required" data-trigger="manual" data-placement="bottom">
                             <label for=event-host>Host name</label>
                             <div class=bar></div>
                             <p class="tag-tip">individual’s name or an organization</p>
                         </div>
                         <div class=input-container>
-                            <input class="type-zone toolTip" v-on:keyup="keyUp" id="guest" autocomplete="off" title="Required! - 'Add at least one guest'" class="toolTip" data-trigger="manual">
+                            <input class="type-zone toolTip" v-on:keyup="keyUp" id="guest" autocomplete="off" title="Required! - 'Add at least one guest'" class="toolTip" data-trigger="manual" data-placement="bottom">
                             <label id="label-guest" for="guest">Guest list</label>
                             <div class=bar></div>
                             <p class="tag-tip">use a 'comma ,' or 'enter' to add a guest name</p>
                         </div>
                         <div class=input-container>
-                            <input class="event-required" id="guestHidden" type="hidden" required v-model="event.guest">
+                            <input class="event-required" id="guestHidden" type="hidden" required v-model="event.guest" data-placement="bottom">
                             <div id="tagList"></div>
                         </div>
                         <div class=input-container>
-                            <input id=location required v-model="event.location" title="Required! - 'Add an address of event'" autocomplete="off" class="toolTip event-required" data-trigger="manual">
+                            <input id=location required v-model="event.location" title="Required! - 'Add an address of event'" autocomplete="off" class="toolTip event-required" data-trigger="manual" data-placement="bottom">
                             <label for=location>Location</label>
                             <div class=bar></div>
                             <p class="tag-tip">e.g. 'Room 203, Block B, Oxford University'</p>
@@ -153,12 +155,12 @@ var templateLogin = `
                         <form v-on:submit.prevent class="formReg" id="logForm">
                             <div class=input-container>
                                 <input class="emailLog clearInput emailValid" required name="email" type="email" autofocus v-model="userLogin.email" id="login-name">
-                                <label for=email>Email</label>
+                                <label for=login-name>Email</label>
                                 <div class=bar></div>
                             </div>
                             <div class=input-container>
                                 <input id="passwordLog" class="clearInput" required name="password" type="password" v-model="userLogin.password" id="password-log">
-                                <label for=password-log>Password</label>
+                                <label for=passwordLog>Password</label>
                                 <div class=bar id="validForm"></div>
                             </div>
                             <div class=button-container>
@@ -181,7 +183,7 @@ var templateLogin = `
                         <h1 class=title>Register</h1>
                         <form v-on:submit.prevent class="formReg" id="regForm">
                             <div class=input-container>
-                                <input class="clearInput registerReq" id="name" name="fname" required v-model="register.fname" autofocus>
+                                <input class="clearInput registerReq" id="fname" name="fname" required v-model="register.fname" autofocus>
                                 <span class="glyphicon form-control-feedback" id="name1"></span>
                                 <label for=fname>First name</label>
                                 <div class=bar></div>
@@ -207,7 +209,7 @@ var templateLogin = `
                             </div>
                             <div class=input-container>
                                 <input class="clearInput" name="optional" id="register-organization" v-model="register.organization" autocomplete="off" placeholder="e.g. Google company">
-                                <label for=optional>Organization</label>
+                                <label for=register-organization>Organization</label>
                                 <div class=bar id="validForm2"></div>
                             </div>
                             <div class=button-container>
@@ -255,9 +257,7 @@ var eventValidation = function (event) {
         if (guestInput) {
             $("#guest").attr("title", "Press 'enter' or 'comma' to add guest!");
         }
-        $(passEvent).tooltip({
-            "placement": "bottom"
-        }).tooltip("show");
+        $(passEvent).tooltip("show");
         timeoutID.push(window.setTimeout(function () {
             $(passEvent).tooltip("destroy");
             // clear respective timeouts running
@@ -387,6 +387,9 @@ Vue.component("login-modal", {
                             $(this).val("");
                         });
 
+                        // remove class padding
+                        $("#remove-class").removeClass("custom-li");
+
                         // hide the modal
                         this.$parent.hideModals();
                         // success login
@@ -514,7 +517,7 @@ var initVue = new Vue({
             $("#register-form").fadeIn(fadeTime);
             $("#login-form").hide();
             setTimeout(function () {
-                $("#name").focus();
+                $("#fname").focus();
             }, one);
         },
         "hideModals": function () {
@@ -541,6 +544,8 @@ var initVue = new Vue({
             // success log out
             $(".mid-section").prepend(strAlert + strLogOut);
             this.alertRemove();
+            // add class padding
+            $("#remove-class").addClass("custom-li");
             // remove name & signout button
             this.navLogName = "";
             // sign off
@@ -581,17 +586,17 @@ var initVue = new Vue({
 
         $(".form_datetime").datetimepicker("setStartDate", datetime);
 
-        $("#date1").datetimepicker().
-        on("changeDate", function () {
-            var dateEnd = $("#date2").val(),
-                dateStart = $("#date1").val();
+        // $("#date1").datetimepicker().
+        // on("changeDate", function () {
+        //     var dateEnd = $("#date2").val(),
+        //         dateStart = $("#date1").val();
 
-            $("#date2").attr("placeholder", dateStart);
+        //     $("#date2").attr("placeholder", dateStart);
 
-            if (dateStart > dateEnd) {
-                $("#date2").attr("placeholder", dateStart);
-            }
-        });
+        //     if (dateStart > dateEnd) {
+        //         $("#date2").attr("placeholder", dateStart);
+        //     }
+        // });
 
         if (localStorage.getObject("user") !== null) {
             // get all the users from the database
