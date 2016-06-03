@@ -34,6 +34,7 @@ var $,
 Storage.prototype.getObject = function (key) {
     value = this.getItem(key);
 
+
     return value && JSON.parse(value);
 };
 
@@ -84,13 +85,14 @@ var templateEvent = `
                             <p class="tag-tip">e.g. 'Web development Workshop'</p>
                         </div>
                         <div class="input-group input-daterange" id="date">
-                            <p class="time-label">Start time</p>
-                            <input id="date1" size="16" type="text" value="` + datetime + `  @  11:30 AM" readonly class="form-control form_datetime event-required" v-model="event.date1" required>
-                            <p class="time-label">End time</p>
-                            <input id="date2" size="16" type="text" value="` + datetime + `  @  4:30 PM" readonly class="form-control form_datetime event-required" v-model="event.date2" required>
+                            <p class="time-label" for="date1">Start time</p>
+                            <input id="date1" size="16" type="text" placeholder="` + datetime + `  @  11:30 AM" value="" readonly class="form-control form_datetime event-required toolTip" v-model="event.date1" required title="Required! - 'Start date & time'" data-trigger="manual">
+                            <p class="time-label" for="date2">End time</p>
+                            <input id="date2" size="16" type="text" placeholder="` + datetime + `  @  4:30 PM" value="" readonly class="form-control form_datetime event-required toolTip" v-model="event.date2" required title="Required! - 'End date & time'" data-trigger="manual">
                         </div>
+                        <p class="time-label" for="select-input">Type of Event</p>
                         <select v-model="event.eventType" title="Required! - 'Type of event'" autocomplete="off" required id="select-input" class="toolTip event-required" data-trigger="manual" onfocusout="eventValidation('#select-input')">
-                            <option selected value="">Select event-type</option>
+                            <option selected value="">Select an event</option>
                             <option value="Meet-up">Meet-up</option>
                             <option value="Birthday">Birthday</option>
                             <option value="Conference">Conference</option>
@@ -124,7 +126,7 @@ var templateEvent = `
                             <p class="tag-tip">e.g. 'Room 203, Block B, Oxford University'</p>
                         </div>
                         <div class=input-container>
-                            <textarea class="form-control" id=textarea v-model="event.description" name="description" rows="1"></textarea>
+                            <textarea id="description" class="form-control" id=textarea v-model="event.description" name="description" rows="1"></textarea>
                             <label class="textLabel" for=description>Description</label>
                             <div class=bar></div>
                         </div>
@@ -150,13 +152,13 @@ var templateLogin = `
                         <h1 class=title>Log In</h1>
                         <form v-on:submit.prevent class="formReg" id="logForm">
                             <div class=input-container>
-                                <input class="emailLog clearInput emailValid" required name="email" type="email" autofocus v-model="userLogin.email">
+                                <input class="emailLog clearInput emailValid" required name="email" type="email" autofocus v-model="userLogin.email" id="login-name">
                                 <label for=email>Email</label>
                                 <div class=bar></div>
                             </div>
                             <div class=input-container>
-                                <input id="passwordLog" class="clearInput" required name="password" type="password" v-model="userLogin.password">
-                                <label for=password>Password</label>
+                                <input id="passwordLog" class="clearInput" required name="password" type="password" v-model="userLogin.password" id="password-log">
+                                <label for=password-log>Password</label>
                                 <div class=bar id="validForm"></div>
                             </div>
                             <div class=button-container>
@@ -315,6 +317,7 @@ Vue.component("event-modal", {
                 if (typeof this.event.description !== "undefined") {
                     this.event.description = String("\"" + this.event.description + "\"");
                 }
+                this.event.date2 = document.getElementById("date2").value;
 
                 // We pass the event data to the parent component
                 this.$dispatch("event-data", this.event);
@@ -489,6 +492,9 @@ var initVue = new Vue({
         "showModalEvent": function () {
             if (loggedIn) {
                 this.showEvent = true;
+                setTimeout(function () {
+                    $("#event-name").focus();
+                }, one);
             } else {
                 this.showLogin = true;
                 $("#login-form").fadeIn(fadeTime);
@@ -499,12 +505,17 @@ var initVue = new Vue({
             this.showLogin = true;
             $("#login-form").fadeIn(fadeTime);
             $("#register-form").hide();
+            setTimeout(function () {
+                $("#login-name").focus();
+            }, one);
         },
         "showModalSignUp": function () {
             this.showLogin = true;
             $("#register-form").fadeIn(fadeTime);
             $("#login-form").hide();
-
+            setTimeout(function () {
+                $("#name").focus();
+            }, one);
         },
         "hideModals": function () {
             this.showLogin = false;
@@ -513,6 +524,9 @@ var initVue = new Vue({
         },
         "deleteEvent": function (index) {
             this.eventLists.splice(index, one);
+            // Store all events into users local database
+            accountUsers[userLogged[three]].events = this.eventLists;
+            localStorage.setObject("user", accountUsers);
             numEvents -= one;
             if (!numEvents) {
                 $(".change").toggleClass("invisible add-box");
@@ -552,7 +566,6 @@ var initVue = new Vue({
     "ready": function () {
         // initalize tags
         $("#tagList").tagging();
-        // $("#textarea").autogrow();
 
         // initalize calendar
         $(".form_datetime").datetimepicker({
@@ -573,10 +586,10 @@ var initVue = new Vue({
             var dateEnd = $("#date2").val(),
                 dateStart = $("#date1").val();
 
-            $("#date2").datetimepicker("setStartDate", dateStart);
+            $("#date2").attr("placeholder", dateStart);
 
             if (dateStart > dateEnd) {
-                document.getElementById("date2").value = dateStart;
+                $("#date2").attr("placeholder", dateStart);
             }
         });
 

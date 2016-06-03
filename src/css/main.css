@@ -1,4 +1,8 @@
 /*// Set Colors*/
+.custom-li {
+  cursor: pointer;
+  color: #59CF84; }
+
 .modal-mask {
   position: absolute;
   z-index: 9998;
@@ -53,8 +57,7 @@
       .modal-container .input-container input:focus ~ label,
       .modal-container .input-container textarea:focus ~ label {
         color: #9d9d9d;
-        -webkit-transform: translate(-12%, -40%) scale(0.75);
-                transform: translate(-12%, -40%) scale(0.75); }
+        transform: translate(-12%, -40%) scale(0.75); }
       .modal-container .input-container input:focus ~ .bar:before, .modal-container .input-container input:focus ~ .bar:after,
       .modal-container .input-container textarea:focus ~ .bar:before,
       .modal-container .input-container textarea:focus ~ .bar:after {
@@ -65,8 +68,7 @@
       .modal-container .input-container input:valid:not(#guest) ~ label,
       .modal-container .input-container textarea:valid:not(#guest) ~ label {
         color: #9d9d9d;
-        -webkit-transform: translate(-12%, -40%) scale(0.75);
-                transform: translate(-12%, -40%) scale(0.75); }
+        transform: translate(-12%, -40%) scale(0.75); }
     .modal-container .input-container input:-webkit-autofill {
       color: #fff !important; }
     .modal-container .input-container textarea {
@@ -118,8 +120,7 @@
       font-style: italic;
       font-size: 11px; }
     .modal-container .input-container .label-guest {
-      -webkit-transform: translate(-12%, -40%) scale(0.75);
-              transform: translate(-12%, -40%) scale(0.75); }
+      transform: translate(-12%, -40%) scale(0.75); }
     .modal-container .input-container .help-block {
       font-size: 11px;
       position: absolute;
@@ -182,19 +183,15 @@
         color: #ffffff; }
       .modal-container .button-container button:active:before, .modal-container .button-container button:focus:before {
         opacity: 1;
-        -webkit-transform: scale(10);
-                transform: scale(10); }
+        transform: scale(10); }
   .modal-container select {
+    margin-bottom: 5px;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    margin: 10px 0px;
+    padding-left: 5px;
     height: 35px;
     width: 270px;
-    border-top: 0;
-    border-left: 0;
-    border-right: 0;
-    border-radius: 0;
     color: #59CF84;
     font-weight: bold;
     border-color: #59CF84;
@@ -221,7 +218,6 @@
 
 .modal-enter .modal-container,
 .modal-leave .modal-container {
-  -webkit-transform: scale(1.1);
   transform: scale(1.1); }
 
 .form-control[disabled],
@@ -356,3 +352,23 @@ input:-webkit-autofill {
   font-size: 11px;
   position: absolute;
   color: #E35F5F; }
+
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:first-child > .btn-group:not(:first-child) > .btn,
+.input-group-btn:first-child > .btn:not(:first-child),
+.input-group-btn:last-child > .btn,
+.input-group-btn:last-child > .btn-group > .btn,
+.input-group-btn:last-child > .dropdown-toggle {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px; }
+
+.input-group .form-control:not(:first-child):not(:last-child),
+.input-group-addon:not(:first-child):not(:last-child),
+.input-group-btn:not(:first-child):not(:last-child) {
+  border-radius: 5px; }
+
+@media (min-width: 768px) {
+  .custom-li {
+    padding-top: 15px;
+    padding-bottom: 15px; } }

@@ -5,6 +5,11 @@ $primary: #363636;
 $greenCustom: #59CF84;
 $redCustom: #E35F5F;
 $dGreyCustom: #757575;
+.custom-li {
+    cursor: pointer;
+    color: $greenCustom;
+}
+
 .modal-mask {
     position: absolute;
     z-index: 9998;
@@ -230,17 +235,13 @@ $dGreyCustom: #757575;
         }
     }
     select {
+        margin-bottom: 5px;
         -webkit-appearance: none;
         -moz-appearance: none;
         appearance: none;
-        margin: 10px 0px;
+        padding-left: 5px;
         height: 35px;
         width: 270px;
-        border-top: 0;
-        border-left: 0;
-        border-right: 0;
-        -webkit-border-radius: 0;
-        border-radius: 0;
         color: $greenCustom;
         font-weight: bold;
         border-color: $greenCustom;
@@ -444,4 +445,28 @@ input:-webkit-autofill {
     font-size: 11px;
     position: absolute;
     color: $redCustom;
+}
+
+.input-group .form-control:last-child,
+.input-group-addon:last-child,
+.input-group-btn:first-child>.btn-group:not(:first-child)>.btn,
+.input-group-btn:first-child>.btn:not(:first-child),
+.input-group-btn:last-child>.btn,
+.input-group-btn:last-child>.btn-group>.btn,
+.input-group-btn:last-child>.dropdown-toggle {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.input-group .form-control:not(:first-child):not(:last-child),
+.input-group-addon:not(:first-child):not(:last-child),
+.input-group-btn:not(:first-child):not(:last-child) {
+    border-radius: 5px;
+}
+
+@media (min-width: 768px) {
+    .custom-li {
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
 }
